@@ -17,75 +17,81 @@ const pageEls = {
 		'3': document.querySelector('.btn__icon_3')
 	},
 	btn: {
-		'1': document.querySelector('.btn__icon_1'),
-		'2': document.querySelector('.btn__icon_2'),
-		'3': document.querySelector('.btn__icon_3')
+		'1': document.querySelector('.btn_1'),
+		'2': document.querySelector('.btn_2'),
+		'3': document.querySelector('.btn_3')
 	},
 	bg: document.querySelector('.bg-img'),
 	volumeController: document.querySelector('.volume-controller')
 }
 
-pageEls.icon['1'].src = sunSVG
-pageEls.icon['2'].src = cloudSVG
-pageEls.icon['3'].src = snowSVG
-pageEls.bg.src = summerJPG
-
-
 const weather = {
 	summer: {
 		audio: new Audio(summerMP3),
 		icon: sunSVG,
-		bg:  summerJPG
+		bg:  summerJPG,
+		str: '1'
 	},
 	rain: {
 		audio: new Audio(rainMP3),
 		icon: cloudSVG,
-		bg: rainyJPG
+		bg: rainyJPG,
+		str: '2'
 	},
 	winter: {
 		audio: new Audio(winterMP3),
 		icon: snowSVG,
-		bg: winterJPG
+		bg: winterJPG,
+		str: '3'
 	}
 }
 
+const changeTheWeather = (clickedWeather) => {
+	pageEls.bg.src = weather[clickedWeather].bg
 
+	Object.keys(weather).forEach(key => {
+		if (clickedWeather !== key && !weather[key].audio.paused) {
+			weather[key].audio.pause()
+			pageEls.icon[weather[key].str].src	= weather[key].icon
+		}
+	})
+
+	if (weather[clickedWeather].audio.paused) {
+		weather[clickedWeather].audio.play()
+		pageEls.icon[weather[clickedWeather].str].src = pauseSVG
+	} else {
+		weather[clickedWeather].audio.pause()
+		pageEls.icon[weather[clickedWeather].str].src = weather[clickedWeather].icon
+	}
+
+}
+
+Object.keys(weather).forEach(key => {
+	pageEls.icon[weather[key].str].src = weather[key].icon
+})
+
+pageEls.bg.src = summerJPG
 
 pageEls.volumeController.addEventListener('input', () => {
-	weather.summer.audio.volume = pageEls.volumeController.value
-	weather.rain.audio.volume = pageEls.volumeController.value
-	weather.winter.audio.volume = pageEls.volumeController.value
+	Object.keys(weather).forEach(key => {
+		weather[key].audio.volume = pageEls.volumeController.value
+	})
 })
 
-pageEls.btn['1'].addEventListener('click', () => {
-	pageEls.bg.src = summerJPG
-	if (weather.summer.audio.paused) {
-		weather.summer.audio.play()
-		pageEls.icon['1'].src = pauseSVG
-	} else {
-		weather.summer.audio.pause()
-		pageEls.icon['1'].src = sunSVG
-	}
-})
-
-pageEls.btn['2'].addEventListener('click', () => {
-	pageEls.bg.src = rainyJPG
-	if (weather.rain.audio.paused) {
-		weather.rain.audio.play()
-		pageEls.icon['2'].src = pauseSVG
-	} else {
-		weather.rain.audio.pause()
-		pageEls.icon['2'].src = cloudSVG
-	}
-})
-
-pageEls.btn['3'].addEventListener('click', () => {
-	pageEls.bg.src = winterJPG
-	if (weather.winter.audio.paused) {
-		weather.winter.audio.play()
-		pageEls.icon['3'].src = pauseSVG
-	} else {
-		weather.winter.audio.pause()
-		pageEls.icon['3'].src = snowSVG
-	}
+Object.keys(pageEls.btn).forEach(key => {
+	pageEls.btn[key].addEventListener('click', () => {
+		switch (key) {
+			case '1':
+				changeTheWeather('summer')
+				break
+			case '2':
+				changeTheWeather('rain')
+				break
+			case '3':
+				changeTheWeather('winter')
+				break
+			default:
+				changeTheWeather('summer')
+		}
+	})
 })
