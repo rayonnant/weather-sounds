@@ -1,97 +1,127 @@
-import './index.scss'
-import cloudSVG from './assets/icons/cloud-rain.svg'
-import snowSVG from './assets/icons/cloud-snow.svg'
-import pauseSVG from './assets/icons/pause.svg'
-import sunSVG from './assets/icons/sun.svg'
-import rainyJPG from './assets/rainy-bg.jpg'
-import summerJPG from './assets/summer-bg.jpg'
-import winterJPG from './assets/winter-bg.jpg'
-import summerMP3 from './assets/sounds/summer.mp3'
-import rainMP3 from './assets/sounds/rain.mp3'
-import winterMP3 from './assets/sounds/winter.mp3'
-
+import './index.scss';
+import cloudSVG from './assets/icons/cloud-rain.svg';
+import snowSVG from './assets/icons/cloud-snow.svg';
+import pauseSVG from './assets/icons/pause.svg';
+import sunSVG from './assets/icons/sun.svg';
+import rainyJPG from './assets/rainy-bg.jpg';
+import summerJPG from './assets/summer-bg.jpg';
+import winterJPG from './assets/winter-bg.jpg';
+import summerMP3 from './assets/sounds/summer.mp3';
+import rainMP3 from './assets/sounds/rain.mp3';
+import winterMP3 from './assets/sounds/winter.mp3';
 const pageEls = {
-	icon: {
-		'1': document.querySelector('.btn__icon_1'),
-		'2': document.querySelector('.btn__icon_2'),
-		'3': document.querySelector('.btn__icon_3')
-	},
-	btn: {
-		'1': document.querySelector('.btn_1'),
-		'2': document.querySelector('.btn_2'),
-		'3': document.querySelector('.btn_3')
-	},
-	bg: document.querySelector('.bg-img'),
-	volumeController: document.querySelector('.volume-controller')
-}
-
+    icon: {
+        '1': document.querySelector('.btn__icon_1'),
+        '2': document.querySelector('.btn__icon_2'),
+        '3': document.querySelector('.btn__icon_3')
+    },
+    btn: {
+        '1': document.querySelector('.btn_1'),
+        '2': document.querySelector('.btn_2'),
+        '3': document.querySelector('.btn_3')
+    },
+    bg: document.querySelector('.bg-img'),
+    volumeController: document.querySelector('.volume-controller')
+};
+var Seasons;
+(function (Seasons) {
+    Seasons["SUMMER"] = "summer";
+    Seasons["RAIN"] = "rain";
+    Seasons["WINTER"] = "winter";
+})(Seasons || (Seasons = {}));
 const weather = {
-	summer: {
-		audio: new Audio(summerMP3),
-		icon: sunSVG,
-		bg:  summerJPG,
-		str: '1'
-	},
-	rain: {
-		audio: new Audio(rainMP3),
-		icon: cloudSVG,
-		bg: rainyJPG,
-		str: '2'
-	},
-	winter: {
-		audio: new Audio(winterMP3),
-		icon: snowSVG,
-		bg: winterJPG,
-		str: '3'
-	}
-}
-
+    [Seasons.SUMMER]: {
+        audio: new Audio(summerMP3),
+        icon: sunSVG,
+        bg: summerJPG,
+        str: '1'
+    },
+    [Seasons.RAIN]: {
+        audio: new Audio(rainMP3),
+        icon: cloudSVG,
+        bg: rainyJPG,
+        str: '2'
+    },
+    [Seasons.WINTER]: {
+        audio: new Audio(winterMP3),
+        icon: snowSVG,
+        bg: winterJPG,
+        str: '3'
+    }
+};
 const changeTheWeather = (clickedWeather) => {
-	pageEls.bg.src = weather[clickedWeather].bg
-
-	Object.keys(weather).forEach(key => {
-		if (clickedWeather !== key && !weather[key].audio.paused) {
-			weather[key].audio.pause()
-			pageEls.icon[weather[key].str].src	= weather[key].icon
-		}
-	})
-
-	if (weather[clickedWeather].audio.paused) {
-		weather[clickedWeather].audio.play()
-		pageEls.icon[weather[clickedWeather].str].src = pauseSVG
-	} else {
-		weather[clickedWeather].audio.pause()
-		pageEls.icon[weather[clickedWeather].str].src = weather[clickedWeather].icon
-	}
-
+    if (pageEls.bg) {
+        pageEls.bg.src = weather[clickedWeather].bg;
+        const iconElement = pageEls.icon[weather[clickedWeather].str];
+        if (iconElement) {
+            for (const season in Seasons) {
+                const audio = weather[Seasons[season]].audio;
+                if (audio) {
+                    if (clickedWeather !== Seasons[season] && !audio.paused) {
+                        audio.pause();
+                        iconElement.src = weather[Seasons[season]].icon;
+                    }
+                }
+            }
+            const audio = weather[clickedWeather].audio;
+            if (audio) {
+                if (audio.paused) {
+                    audio.play();
+                    iconElement.src = pauseSVG;
+                }
+                else {
+                    audio.pause();
+                    iconElement.src = weather[clickedWeather].icon;
+                }
+            }
+        }
+    }
+};
+const seasonNum = {
+    '1': Seasons.SUMMER,
+    '2': Seasons.RAIN,
+    '3': Seasons.WINTER
+};
+for (const key in seasonNum) {
+    const season = seasonNum[key];
+    if (pageEls.icon[key]) {
+        const iconElement = pageEls.icon[key];
+        if (iconElement) {
+            iconElement.src = weather[season].icon;
+        }
+    }
 }
-
-Object.keys(weather).forEach(key => {
-	pageEls.icon[weather[key].str].src = weather[key].icon
-})
-
-pageEls.bg.src = summerJPG
-
-pageEls.volumeController.addEventListener('input', () => {
-	Object.keys(weather).forEach(key => {
-		weather[key].audio.volume = pageEls.volumeController.value
-	})
-})
-
-Object.keys(pageEls.btn).forEach(key => {
-	pageEls.btn[key].addEventListener('click', () => {
-		switch (key) {
-			case '1':
-				changeTheWeather('summer')
-				break
-			case '2':
-				changeTheWeather('rain')
-				break
-			case '3':
-				changeTheWeather('winter')
-				break
-			default:
-				changeTheWeather('summer')
-		}
-	})
-})
+if (pageEls.bg) {
+    pageEls.bg.src = summerJPG;
+}
+if (pageEls.volumeController) {
+    const volController = pageEls.volumeController;
+    pageEls.volumeController.addEventListener('input', () => {
+        for (const season in Seasons) {
+            const audio = weather[Seasons[season]].audio;
+            if (audio) {
+                audio.volume = +volController.value;
+            }
+        }
+    });
+}
+Object.keys(pageEls.btn).forEach((key) => {
+    const btn = pageEls.btn[key];
+    if (btn) {
+        btn.addEventListener('click', () => {
+            switch (key) {
+                case '1':
+                    changeTheWeather(Seasons.SUMMER);
+                    break;
+                case '2':
+                    changeTheWeather(Seasons.RAIN);
+                    break;
+                case '3':
+                    changeTheWeather(Seasons.WINTER);
+                    break;
+                default:
+                    changeTheWeather(Seasons.SUMMER);
+            }
+        });
+    }
+});
