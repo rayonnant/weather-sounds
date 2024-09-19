@@ -9,55 +9,61 @@ importers:
   .:
     devDependencies:
       copy-webpack-plugin:
-        specifier: ^12.0.2
+        specifier: 12.0.2
         version: 12.0.2(webpack@5.93.0(webpack-cli@5.1.4))
       css-loader:
-        specifier: ^7.1.2
+        specifier: 7.1.2
         version: 7.1.2(webpack@5.93.0(webpack-cli@5.1.4))
       css-minimizer-webpack-plugin:
-        specifier: ^7.0.0
+        specifier: 7.0.0
         version: 7.0.0(webpack@5.93.0(webpack-cli@5.1.4))
       eslint:
-        specifier: ^9.9.0
+        specifier: 9.9.0
         version: 9.9.0(jiti@1.21.6)
       eslint-webpack-plugin:
-        specifier: ^4.2.0
+        specifier: 4.2.0
         version: 4.2.0(eslint@9.9.0(jiti@1.21.6))(webpack@5.93.0(webpack-cli@5.1.4))
       file-loader:
-        specifier: ^6.2.0
+        specifier: 6.2.0
         version: 6.2.0(webpack@5.93.0(webpack-cli@5.1.4))
       html-webpack-plugin:
-        specifier: ^5.6.0
+        specifier: 5.6.0
         version: 5.6.0(webpack@5.93.0(webpack-cli@5.1.4))
       mini-css-extract-plugin:
-        specifier: ^2.9.0
+        specifier: 2.9.0
         version: 2.9.0(webpack@5.93.0(webpack-cli@5.1.4))
       postcss:
-        specifier: ^8.4.41
+        specifier: 8.4.41
         version: 8.4.41
       postcss-loader:
-        specifier: ^8.1.1
-        version: 8.1.1(postcss@8.4.41)(webpack@5.93.0(webpack-cli@5.1.4))
+        specifier: 8.1.1
+        version: 8.1.1(postcss@8.4.41)(typescript@5.5.4)(webpack@5.93.0(webpack-cli@5.1.4))
       postcss-preset-env:
-        specifier: ^10.0.1
+        specifier: 10.0.1
         version: 10.0.1(postcss@8.4.41)
       sass:
-        specifier: ^1.77.8
+        specifier: 1.77.8
         version: 1.77.8
       sass-loader:
-        specifier: ^16.0.0
+        specifier: 16.0.0
         version: 16.0.0(sass@1.77.8)(webpack@5.93.0(webpack-cli@5.1.4))
+      ts-loader:
+        specifier: 9.5.1
+        version: 9.5.1(typescript@5.5.4)(webpack@5.93.0(webpack-cli@5.1.4))
+      typescript:
+        specifier: 5.5.4
+        version: 5.5.4
       webpack:
-        specifier: ^5.93.0
+        specifier: 5.93.0
         version: 5.93.0(webpack-cli@5.1.4)
       webpack-cli:
-        specifier: ^5.1.4
+        specifier: 5.1.4
         version: 5.1.4(webpack-dev-server@5.0.4)(webpack@5.93.0)
       webpack-dev-server:
-        specifier: ^5.0.4
+        specifier: 5.0.4
         version: 5.0.4(webpack-cli@5.1.4)(webpack@5.93.0)
       webpack-merge:
-        specifier: ^6.0.1
+        specifier: 6.0.1
         version: 6.0.1
 
 packages:
@@ -2475,6 +2481,10 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
+  source-map@0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
+    engines: {node: '>= 8'}
+
   spdy-transport@3.0.0:
     resolution: {integrity: sha512-hsLVFE5SjA6TCisWeJXFKniGGOpBgMLmerfO2aCyCU5s7nJ/rpAepqmFifv/GCbSbueEeAJJnmSQ2rKC/g8Fcw==}
 
@@ -2598,6 +2608,13 @@ packages:
     peerDependencies:
       tslib: '2'
 
+  ts-loader@9.5.1:
+    resolution: {integrity: sha512-rNH3sK9kGZcH9dYzC7CewQm4NtxJTjSEVRJ2DyBZR7f8/wcta+iV44UPCXc5+nzDzivKtlzV6c9P4e+oFhDLYg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      typescript: '*'
+      webpack: ^5.0.0
+
   tslib@2.6.3:
     resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
 
@@ -2608,6 +2625,11 @@ packages:
   type-is@1.6.18:
     resolution: {integrity: sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==}
     engines: {node: '>= 0.6'}
+
+  typescript@5.5.4:
+    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+    engines: {node: '>=14.17'}
+    hasBin: true
 
   undici-types@6.18.2:
     resolution: {integrity: sha512-5ruQbENj95yDYJNS3TvcaxPMshV7aizdv/hWYjGIKoANWKjhWNBsr2YEuYZKodQulB1b8l7ILOuDQep3afowQQ==}
@@ -3612,12 +3634,14 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig@9.0.0:
+  cosmiconfig@9.0.0(typescript@5.5.4):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
+    optionalDependencies:
+      typescript: 5.5.4
 
   cross-spawn@7.0.3:
     dependencies:
@@ -4768,9 +4792,9 @@ snapshots:
       '@csstools/utilities': 2.0.0(postcss@8.4.41)
       postcss: 8.4.41
 
-  postcss-loader@8.1.1(postcss@8.4.41)(webpack@5.93.0(webpack-cli@5.1.4)):
+  postcss-loader@8.1.1(postcss@8.4.41)(typescript@5.5.4)(webpack@5.93.0(webpack-cli@5.1.4)):
     dependencies:
-      cosmiconfig: 9.0.0
+      cosmiconfig: 9.0.0(typescript@5.5.4)
       jiti: 1.21.6
       postcss: 8.4.41
       semver: 7.6.3
@@ -5272,6 +5296,8 @@ snapshots:
 
   source-map@0.6.1: {}
 
+  source-map@0.7.4: {}
+
   spdy-transport@3.0.0:
     dependencies:
       debug: 4.3.6
@@ -5395,6 +5421,16 @@ snapshots:
     dependencies:
       tslib: 2.6.3
 
+  ts-loader@9.5.1(typescript@5.5.4)(webpack@5.93.0(webpack-cli@5.1.4)):
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.17.1
+      micromatch: 4.0.7
+      semver: 7.6.3
+      source-map: 0.7.4
+      typescript: 5.5.4
+      webpack: 5.93.0(webpack-cli@5.1.4)
+
   tslib@2.6.3: {}
 
   type-check@0.4.0:
@@ -5405,6 +5441,8 @@ snapshots:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
+
+  typescript@5.5.4: {}
 
   undici-types@6.18.2: {}
 

@@ -12,7 +12,7 @@ module.exports = merge(commonConfig, {
 	},
 	plugins: [
 		new ESLintPlugin({
-			extensions: ['js', 'jsx', 'ts', 'tsx']
+			extensions: ['js', 'jsx']
 		})
 	]
 })
