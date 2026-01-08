@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "webpack serve --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js",
-    "build:dev": "webpack --config webpack.config.dev.js"
+    "start": "webpack serve --config webpack.config.dev.cjs",
+    "build": "webpack --config webpack.config.prod.cjs",
+    "build:dev": "webpack --config webpack.config.dev.cjs",
+    "lint": "eslint src/**/*.ts"
   },
   "keywords": [
     "webpack",
@@ -16,11 +17,11 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@eslint/js": "^9.39.2",
+    "@eslint/js": "9.39.2",
     "copy-webpack-plugin": "12.0.2",
     "css-loader": "7.1.2",
     "css-minimizer-webpack-plugin": "7.0.0",
-    "eslint": "^9.9.0",
+    "eslint": "9.9.0",
     "eslint-webpack-plugin": "4.2.0",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.6.0",
@@ -31,14 +32,14 @@
     "sass": "1.77.8",
     "sass-loader": "16.0.0",
     "ts-loader": "9.5.1",
-    "typescript": "^5.5.4",
-    "typescript-eslint": "^8.52.0",
-    "webpack": "^5.104.1",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.52.0",
+    "webpack": "5.104.1",
     "webpack-cli": "5.1.4",
-    "webpack-dev-server": "^5.2.2",
+    "webpack-dev-server": "5.2.2",
     "webpack-merge": "6.0.1"
   },
   "dependencies": {
-    "globals": "^17.0.0"
+    "globals": "17.0.0"
   }
 }

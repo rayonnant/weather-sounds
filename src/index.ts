@@ -1,14 +1,14 @@
 import './index.scss'
-import cloudSVG from './assets/icons/cloud-rain.svg'
-import snowSVG from './assets/icons/cloud-snow.svg'
-import pauseSVG from './assets/icons/pause.svg'
-import sunSVG from './assets/icons/sun.svg'
-import rainyJPG from './assets/rainy-bg.jpg'
-import summerJPG from './assets/summer-bg.jpg'
-import winterJPG from './assets/winter-bg.jpg'
-import summerMP3 from './assets/sounds/summer.mp3'
-import rainMP3 from './assets/sounds/rain.mp3'
-import winterMP3 from './assets/sounds/winter.mp3'
+import cloudIcon from './assets/icons/cloud-rain.svg'
+import snowIcon from './assets/icons/cloud-snow.svg'
+import pauseIcon from './assets/icons/pause.svg'
+import sunIcon from './assets/icons/sun.svg'
+import rainyBg from './assets/rainy-bg.webp'
+import summerBg from './assets/summer-bg.webp'
+import winterBg from './assets/winter-bg.webp'
+import summerAudio from './assets/sounds/summer.mp3'
+import rainAudio from './assets/sounds/rain.mp3'
+import winterAudio from './assets/sounds/winter.mp3'
 
 interface IPageElements {
     icon: Record<string, HTMLImageElement | null>
@@ -53,21 +53,21 @@ const weather: {
     }
 } = {
     [Seasons.SUMMER]: {
-        audio: new Audio(summerMP3),
-        icon: sunSVG,
-        bg: summerJPG,
+        audio: new Audio(summerAudio),
+        icon: sunIcon,
+        bg: summerBg,
         str: '1'
     },
     [Seasons.RAIN]: {
-        audio: new Audio(rainMP3),
-        icon: cloudSVG,
-        bg: rainyJPG,
+        audio: new Audio(rainAudio),
+        icon: cloudIcon,
+        bg: rainyBg,
         str: '2'
     },
     [Seasons.WINTER]: {
-        audio: new Audio(winterMP3),
-        icon: snowSVG,
-        bg: winterJPG,
+        audio: new Audio(winterAudio),
+        icon: snowIcon,
+        bg: winterBg,
         str: '3'
     }
 }
@@ -105,7 +105,7 @@ const changeTheWeather = (clickedWeather: Seasons): void => {
             if (audio) {
                 if (audio.paused) {
                     audio.play().then(function() {
-                        iconElement.src = pauseSVG
+                        iconElement.src = pauseIcon
                     })
                 } else {
                     audio.pause()
@@ -120,7 +120,7 @@ const changeTheWeather = (clickedWeather: Seasons): void => {
 setBaseIcons()
 
 if (pageEls.bg) {
-    pageEls.bg.src = summerJPG
+    pageEls.bg.src = summerBg
 }
 
 if (pageEls.volumeController) {
