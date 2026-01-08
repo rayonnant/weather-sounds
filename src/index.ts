@@ -10,7 +10,7 @@ import summerAudio from './assets/sounds/summer.mp3'
 import rainAudio from './assets/sounds/rain.mp3'
 import winterAudio from './assets/sounds/winter.mp3'
 
-interface IPageElements {
+interface PageElements {
     icon: Record<string, HTMLImageElement | null>
     btn: Record<string, HTMLDivElement | null>
     bg: HTMLImageElement | null,
@@ -23,7 +23,7 @@ enum Seasons {
     WINTER = 'winter'
 }
 
-const pageEls: IPageElements = {
+const pageEls: PageElements = {
     icon: {
         '1': document.querySelector('.btn__icon_1'),
         '2': document.querySelector('.btn__icon_2'),
