@@ -4,6 +4,8 @@
 
 ## Демо
 
+🟢 **Live:** [https://weather-sounds-32bd1.web.app/](https://weather-sounds-32bd1.web.app/)
+
 ![Weather Sounds интерфейс](src/assets/screenshot.webp)
 
 ## Функционал
